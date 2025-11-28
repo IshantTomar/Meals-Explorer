@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results for "<%= q %>"</title>
+</head>
+<body>
+  <%- include("partials/header") %>
+  <h2>Search Results</h2>
+
+  <% if (foundMeal || foundDrink) { %>
+
+      <% if (foundMeal) { %>
+         <h3>Matched Meal</h3>
+         <p><a href="/meal/<%= foundMeal.idMeal %>"><%= foundMeal.strMeal %></a></p>
+     <% } %>
+
+      <% if (foundDrink) { %>
+         <h3>Matched Drink</h3>
+         <p><a href="/drink/<%= foundDrink.idDrink %>"><%= foundDrink.strDrink %></a></p>
+      <% } %>
+
+  <% } else { %>
+     <p>No exact matches found for "<%= q %>".</p>
+  <% } %>
+
+  <hr>
+
+  <!-- ALWAYS show meal + drink list -->
+  <%- include("partials/meals-list", { meals }) %>
+
+  <%- include("partials/drinks-list", { drinks }) %>
+
+</body>
+</html>

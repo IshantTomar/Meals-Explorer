@@ -1,0 +1,10 @@
+<img src="<%= drinks.strDrinkThumb %>" alt="<%= drinks.strDrink %>">
+<h1><%= drinks.strDrink %></h1>
+<ol>
+  <% for (let i = 1; i <= 20; i++) { 
+       const ing = drinks['strIngredient' + i];
+       const measure = drinks['strMeasure' + i];
+       if (ing && ing.trim() !== '') { %>
+    <li><%= measure %> <%= ing %></li>
+  <% } } %>
+</ol>
