@@ -12,13 +12,14 @@
   <div class="single-recipe-card">
     <img src="<%= drink.strDrinkThumb %>" alt="<%= drink.strDrink %>" width="400px">
     <h2 class="section-title"><%= drink.strDrink %></h2>
-    <button id="fav-drink-btn" 
-        data-id="<%= drink.idDrink %>" 
-        data-name="<%= drink.strDrink %>" 
-        data-thumb="<%= drink.strDrinkThumb %>" 
-        data-type="drink">
+    <button id="fav-btn" 
+    data-id="<%= drink.idDrink %>" 
+    data-name="<%= drink.strDrink %>" 
+    data-thumb="<%= drink.strDrinkThumb %>" 
+    data-type="drink">
   ❤️ Add to Favorites
 </button>
+
 
   </div>
  <div class="single-content-container">
@@ -59,24 +60,25 @@
       </div>
     </div>
   </div>
+
+  <%- include("footer") %>
   <script src="/js/favorites.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('fav-btn');
-    window.favHelpers.wireSingleFavoriteButton('fav-btn');
+document.addEventListener('DOMContentLoaded', () => {
+  window.favHelpers.wireSingleFavoriteButton('fav-btn');
 
-    // disable if already in favorites
-    if (btn) {
-      const list = window.favHelpers.getFavorites();
-      const id = btn.dataset.id;
-      const type = btn.dataset.type;
-      if (list.some(x => x.id === id && x.type === type)) {
-        btn.textContent = "❤️ Added to Favorites";
-        btn.disabled = true;
-      }
+  const btn = document.getElementById('fav-btn');
+  if (btn) {
+    const list = window.favHelpers.getFavorites();
+    const id = btn.dataset.id;
+    const type = btn.dataset.type;
+
+    if (list.some(x => x.id === id && x.type === type)) {
+      btn.textContent = "❤️ Added to Favorites";
+      btn.disabled = true;
     }
-  });
+  }
+});
 </script>
-
 </body>
 </html>
