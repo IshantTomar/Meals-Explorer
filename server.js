@@ -8,7 +8,7 @@ const { fetchDrinks } = require('./helpers/fetchDrinks');
 
 // Initialize Express app
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Serve static files from "public" folder
 app.use(express.static('public'));
@@ -133,5 +133,5 @@ app.get("/drink/:id", async (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log("Server running on port " + PORT);
 });
